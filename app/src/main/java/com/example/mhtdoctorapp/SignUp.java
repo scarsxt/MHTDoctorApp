@@ -16,9 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -27,12 +30,15 @@ import java.util.Objects;
 
 public class SignUp extends AppCompatActivity {
 
-    private EditText name,email, pw1, pw2;
+    private EditText email, pw1, pw2;
     private Button reg;
-    private String uname,mail, pass1, pass2;
-    private FirebaseAuth mAuth;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private String mail, pass1, pass2;
     private TextView sgnin;
+
+    FirebaseFirestore firebaseFirestore;
+    FirebaseAuth mAuth;
+    FirebaseUser muser;
+
     //Dialog dialog;
 
     @Override
@@ -41,7 +47,6 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         //Prevent User from Taking screenshots or recording screen
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
 
         sgnin = findViewById(R.id.sign_in);
         sgnin.setOnClickListener(new View.OnClickListener() {
@@ -62,14 +67,10 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-
-                //name = (EditText)findViewById(R.id.editTextTextName);
                 email = (EditText)findViewById(R.id.editTextTextEmailAddress2);
                 pw1 = (EditText)findViewById(R.id.editTextTextPassword);
                 pw2 = (EditText)findViewById(R.id.editTextTextPassword2);
 
-
-                //uname = name.getText().toString();
                 mail = email.getText().toString();
                 pass1 = pw1.getText().toString();
                 pass2 = pw2.getText().toString();
@@ -82,27 +83,6 @@ public class SignUp extends AppCompatActivity {
                 {
                     add(mail,pass1);
                 }
-
-                /*
-                HashMap<String,Object> map = new HashMap<>();
-
-                map.put("Name",uname);
-                map.put("Mail",mail);
-
-                FirebaseDatabase.getInstance().getReference().child("Account").push()
-                        .setValue(map)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                Log.i("Pass","onComplete");
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-                        Log.i("Failed","onCompleteFailed");
-                    }
-                });
-                 */
 
             }
         });
@@ -144,25 +124,17 @@ public class SignUp extends AppCompatActivity {
 
     private void add(String email,String pw)
     {
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
         mAuth.createUserWithEmailAndPassword(email, pw)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            final String TAG = "MyActivity";
-                            String doctorUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
                             // Sign in success, update UI with the signed-in user's information
-                            Map<String, Object> accountData = new HashMap<>();
-                            accountData.put("name", "Stephen");
-                            accountData.put("email", "stephen@stephen");
-                            db.collection("doctorUser").document(doctorUser)
-                                    .set(accountData)
-                                    .addOnSuccessListener(aVoid -> {
-                                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                                    })
-                                    .addOnFailureListener(e -> Log.w(TAG, "Error writing document", e));
                             Toast.makeText(getApplicationContext(), "Sign-up Successful", Toast.LENGTH_LONG).show();
-                            Intent a = new Intent(SignUp.this, MainActivity.class);
+                            Intent a = new Intent(SignUp.this, DoctorDetails.class);
                             startActivity(a);
                             finish();
                         } else {

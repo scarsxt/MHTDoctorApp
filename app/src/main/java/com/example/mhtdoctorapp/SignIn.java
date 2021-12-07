@@ -119,7 +119,6 @@ public class SignIn extends AppCompatActivity {
                 startActivity(d);
             }
         });
-
          */
 
     }
@@ -159,7 +158,7 @@ public class SignIn extends AppCompatActivity {
                         {
                             Toast.makeText(getApplicationContext(), "Signed in successfully", Toast.LENGTH_LONG).show();
                             Intent b = new Intent(SignIn.this, MainActivity.class);
-                            b.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            //b.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                             startActivity(b);
                             finish();
                         } else
