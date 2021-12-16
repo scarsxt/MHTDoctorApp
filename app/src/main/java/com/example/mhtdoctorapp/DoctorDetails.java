@@ -51,6 +51,7 @@ public class DoctorDetails extends AppCompatActivity {
                 Map<String, Object> DoctorDetails = new HashMap<>();
                 DoctorDetails.put("Name", Name);
                 DoctorDetails.put("Email", Email);
+                DoctorDetails.put("UID", UID);
 
                 firebaseFirestore.collection("DoctorUser").document(UID)
                         .set(DoctorDetails)

@@ -1,6 +1,7 @@
 package com.example.mhtdoctorapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +33,27 @@ public class AdapterDoctorPatientList extends RecyclerView.Adapter<AdapterDoctor
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ModelDoctorPatientList model = modelArrayList.get(position);
 
-        holder.ModelPatientListName.setText(model.Name);
-        holder.ModelPatientListEmail.setText(model.Email);
-        holder.ModelPatientListTime.setText(model.Time);
+        String name = model.Name;
+        String email = model.Email;
+        String time = model.Time;
+        String id = model.PatientId;
+
+        holder.ModelPatientListName.setText(name);
+        holder.ModelPatientListEmail.setText(email);
+        holder.ModelPatientListTime.setText(time);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(context, DoctorPatientchat.class);
+                a.putExtra("Name", name);
+                a.putExtra("Email", email);
+                a.putExtra("ID", id);
+                a.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                context.startActivity(a);
+            }
+        });
+
     }
 
     @Override

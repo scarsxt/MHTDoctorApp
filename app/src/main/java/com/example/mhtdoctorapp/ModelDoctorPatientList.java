@@ -2,15 +2,24 @@ package com.example.mhtdoctorapp;
 
 public class ModelDoctorPatientList {
 
-    String Name, Email, Time;
+    String Name, Email, Time, PatientId;
 
     public ModelDoctorPatientList() {
     }
 
-    public ModelDoctorPatientList(String name, String email, String time) {
+    public ModelDoctorPatientList(String name, String email, String time, String patientId) {
         Name = name;
         Email = email;
         Time = time;
+        PatientId = patientId;
+    }
+
+    public String getPatientId() {
+        return PatientId;
+    }
+
+    public void setPatientId(String patientId) {
+        PatientId = patientId;
     }
 
     public String getName() {

@@ -3,10 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/drawable/arrow_back.xml" value="0.26205128205128203" />
+        <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/drawable/receivershape.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/drawable/send.xml" value="0.26205128205128203" />
+        <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/drawable/sendershape.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/activity_doctor_details.xml" value="0.25" />
+        <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/activity_doctor_patientchat.xml" value="0.25" />
         <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
         <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
-        <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/patientlistlayout.xml" value="0.25" />
+        <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.2359375" />
+        <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/patientlistlayout.xml" value="0.264" />
+        <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/receiverlayout.xml" value="0.25" />
+        <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/senderlayout.xml" value="0.25" />
       </map>
     </option>
   </component>
