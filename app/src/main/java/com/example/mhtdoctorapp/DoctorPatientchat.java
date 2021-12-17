@@ -21,6 +21,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -69,6 +70,41 @@ public class DoctorPatientchat extends AppCompatActivity {
         DoctorPatientChatNameTxt = findViewById(R.id.DoctorPatientChatNameTxt);
         DoctorPatientChatNameTxt.setText(Name);
 
+        messagesArrayList = new ArrayList<>();
+
+        DoctorPatientChatRecyclerView = findViewById(R.id.DoctorPatientChatRecyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        DoctorPatientChatRecyclerView.setLayoutManager(linearLayoutManager);
+        messagesAdapter = new MessagesAdapter(DoctorPatientchat.this, messagesArrayList);
+        DoctorPatientChatRecyclerView.setAdapter(messagesAdapter);
+
+        //Load/get Data
+        firebaseFirestore.collection("Chats")
+                .document(SenderRoom)
+                .collection("messages").orderBy("timeStamp", Query.Direction.ASCENDING)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            messagesArrayList.clear();
+                            messagesAdapter.notifyDataSetChanged();
+                            for (DocumentSnapshot document : task.getResult()){
+                                //????????///////////////////////////////////////////////////////////////////
+                                //String msg = String.valueOf(Messages.class);
+                                Messages messages = document.toObject(Messages.class);
+                                //Messages messages = (Messages) document.get(msg);
+                                messagesArrayList.add(messages);
+                                messagesAdapter.notifyDataSetChanged();
+                                /////////////////////////////////////////////////////////////////////////////
+                            }
+                            messagesAdapter.notifyDataSetChanged();
+
+                        }
+                    }
+                });
+
 
         DoctorPatientChatTxt = findViewById(R.id.DoctorPatientChatTxt);
         DoctorPatientChatSendBtn = findViewById(R.id.DoctorPatientChatSendBtn);
@@ -102,7 +138,10 @@ public class DoctorPatientchat extends AppCompatActivity {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-
+                                                finish();
+                                                overridePendingTransition( 0, 0);
+                                                startActivity(getIntent());
+                                                overridePendingTransition( 0, 0);
                                             }
                                         });
 
@@ -111,40 +150,7 @@ public class DoctorPatientchat extends AppCompatActivity {
             }
         });
 
-        messagesArrayList = new ArrayList<>();
 
-        DoctorPatientChatRecyclerView = findViewById(R.id.DoctorPatientChatRecyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
-        DoctorPatientChatRecyclerView.setLayoutManager(linearLayoutManager);
-        messagesAdapter = new MessagesAdapter(DoctorPatientchat.this, messagesArrayList);
-        DoctorPatientChatRecyclerView.setAdapter(messagesAdapter);
-
-
-        //Load/get Data
-        firebaseFirestore.collection("Chats")
-                .document(SenderRoom)
-                .collection("messages")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-
-                            messagesArrayList.clear();
-                            for (DocumentSnapshot document : task.getResult()){
-                                //????????///////////////////////////////////////////////////////////////////
-                                Messages messages = (Messages) document.get(String.valueOf(Messages.class));
-                                messagesArrayList.add(messages);
-                                /////////////////////////////////////////////////////////////////////////////
-                            }
-                            messagesAdapter.notifyDataSetChanged();
-
-
-
-                        }
-                    }
-                });
 
 
 
