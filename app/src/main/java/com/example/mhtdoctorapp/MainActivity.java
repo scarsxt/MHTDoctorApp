@@ -1,17 +1,25 @@
 package com.example.mhtdoctorapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -28,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String name;
+
+
+    TextView userName;
+    ImageView logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         modelArrayList.clear();
         myAdapter.notifyDataSetChanged();
-        firebaseFirestore.collection("DoctorUser").document(Uid).collection("PatientList").orderBy("Name", Query.Direction.ASCENDING)    //.whereEqualTo("Status", "Approved").whereEqualTo("ShopVisibility", "Visible").orderBy("ShopName", Query.Direction.ASCENDING)
+        firebaseFirestore.collection("DoctorUser").document(Uid).collection("AppointmentList").orderBy("Name(User)", Query.Direction.ASCENDING)    //.whereEqualTo("Status", "Approved").whereEqualTo("ShopVisibility", "Visible").orderBy("ShopName", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -66,6 +81,55 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+        //logout
+        logout = findViewById(R.id.settings);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+            }
+        });
+
+        userName = findViewById(R.id.userName);
+        db.collection("DoctorUser").document(currentUser)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onComplete(@NonNull Task< DocumentSnapshot > task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+
+                            if (document.exists()) {
+                                String n = document.getString("Name");
+                                userName.setText(n);
+                            } else {
+
+                            }
+                        }
+                    }
+                });
+
+        /*
+        db.collection("").document(currentUser)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        if (task.isSuccessful())
+                        {
+                            name = documentSnapshot.getString("Name");
+                        }
+                    }
+                });
+
+        //userName
+        userName = findViewById(R.id.userName);
+        userName.setText(name);
+
+         */
 
     }
 }

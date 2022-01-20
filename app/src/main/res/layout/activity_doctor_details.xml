@@ -1,53 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
     tools:context=".DoctorDetails">
-
-    <EditText
-        android:id="@+id/DoctorDetailsName"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Name"
-        android:textColorHint="#888888"
-        android:layout_marginBottom="6dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:drawablePadding="12dp"
-        android:textColor="#222222"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
+            <ImageView
+                android:id="@+id/DoctorProfileBackBtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/arrow_back"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"/>
 
-    <EditText
-        android:id="@+id/DoctorDetailsEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter Email"
-        android:textColorHint="#888888"
-        android:layout_marginBottom="6dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:drawablePadding="12dp"
-        android:inputType="textEmailAddress"
-        android:textColor="#222222"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Profile"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EDIT"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:textColor="@color/teal_700"/>
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="NAME"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/editName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:hint="Enter Name"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DATE OF BIRTH"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"/>
+
+                <TextView
+                    android:id="@+id/DoB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:drawablePadding="12dp"
+                    android:hint="--/--/----"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/EDoB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:drawablePadding="12dp"
+                    android:hint="--/--/----"
+                    android:textSize="18sp"
+                    android:visibility="gone"/>
+
+                <CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="GENDER"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="GENDER"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+
+                    <RadioGroup
+                        android:layout_marginBottom="150dp"
+                        android:id="@+id/groupradio"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <!-- In RadioGroup create the 1 Radio Button-->
+                        <!-- like this we will add some more Radio Button-->
+                        <RadioButton
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/male"
+                            android:text="Male"
+                            android:textSize="20dp"/>
+
+                        <RadioButton
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/female"
+                            android:text="Female"
+                            android:textSize="20dp"/>
+
+                        <RadioButton
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/other"
+                            android:text="Other"
+                            android:textSize="20dp"/>
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/DoctorDetailsSubmitBtn"
+        android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="13dp"
-        android:text="Submit"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#4776e6"/>
+        android:text="SAVE"
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
 
-
-</LinearLayout>
+</RelativeLayout>

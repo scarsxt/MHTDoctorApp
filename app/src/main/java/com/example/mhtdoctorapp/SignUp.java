@@ -135,6 +135,7 @@ public class SignUp extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(), "Sign-up Successful", Toast.LENGTH_LONG).show();
                             Intent a = new Intent(SignUp.this, DoctorDetails.class);
+                            a.putExtra("EditMode", "true");
                             startActivity(a);
                             finish();
                         } else {

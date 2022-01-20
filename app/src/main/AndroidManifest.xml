@@ -9,16 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MHTDoctorApp">
+        <activity android:name=".PatientDetails"></activity>
         <activity
             android:name=".SplashScreen"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".DoctorPatientchat"
@@ -26,8 +25,9 @@
         <activity
             android:name=".DoctorDetails"
             android:exported="false" />
-        <activity android:name=".SignUp"
-            android:exported="false"/>
+        <activity
+            android:name=".SignUp"
+            android:exported="false" />
         <activity android:name=".SignIn" />
         <activity android:name=".MainActivity" />
     </application>

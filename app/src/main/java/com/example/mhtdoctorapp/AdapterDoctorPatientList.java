@@ -45,7 +45,7 @@ public class AdapterDoctorPatientList extends RecyclerView.Adapter<AdapterDoctor
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent a = new Intent(context, DoctorPatientchat.class);
+                Intent a = new Intent(context, PatientDetails.class);
                 a.putExtra("Name", name);
                 a.putExtra("Email", email);
                 a.putExtra("ID", id);
@@ -53,7 +53,6 @@ public class AdapterDoctorPatientList extends RecyclerView.Adapter<AdapterDoctor
                 context.startActivity(a);
             }
         });
-
     }
 
     @Override
