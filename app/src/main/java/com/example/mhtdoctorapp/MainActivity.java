@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,15 +31,17 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView DoctorPatientList;
+    RecyclerView DoctorPatientList, RequestList;
     ArrayList<ModelDoctorPatientList> modelArrayList;
-    AdapterDoctorPatientList myAdapter;
+    ArrayList<ModelRequestList> requestLists;
+    AdapterDoctorPatientList myAdapter, requestAdapter;
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
     String name;
+    Button confirm;
 
 
     TextView userName;
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         modelArrayList = new ArrayList<>();
+
         myAdapter = new AdapterDoctorPatientList(this, modelArrayList);
         DoctorPatientList.setAdapter(myAdapter);
 
@@ -81,6 +85,61 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+
+
+
+        RequestList = findViewById(R.id.requestList);
+        RequestList.setHasFixedSize(true);
+        RequestList.setLayoutManager(new LinearLayoutManager(this));
+
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        requestLists = new ArrayList<>();
+
+        myAdapter = new AdapterDoctorPatientList(this, modelArrayList);
+        RequestList.setAdapter(myAdapter);
+
+        requestLists.clear();
+        myAdapter.notifyDataSetChanged();
+        firebaseFirestore.collection("DoctorUser").document(Uid).collection("RequestList").orderBy("Name(User)", Query.Direction.ASCENDING)    //.whereEqualTo("Status", "Approved").whereEqualTo("ShopVisibility", "Visible").orderBy("ShopName", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.e("Firestore Error", error.getMessage());
+                            return;
+                        }
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            if (dc.getType() == DocumentChange.Type.ADDED) {
+                                requestLists.add(dc.getDocument().toObject(ModelRequestList.class));
+                            }
+                            myAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //logout
         logout = findViewById(R.id.settings);

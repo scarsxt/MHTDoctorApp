@@ -6,41 +6,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".PatientDetails">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp">
+
             <ImageView
                 android:id="@+id/DoctorProfileBackBtn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/arrow_back"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:src="@drawable/arrow_back" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Profile"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:textSize="18sp"/>
+                android:text="Your Profile"
+                android:textSize="18sp" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
@@ -60,38 +65,112 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:scaleType="centerCrop"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:scaleType="centerCrop" />
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment: " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COMPLITED"
+                android:textColor="@color/teal_700" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Appointment Date: " />
+
+            <TextView
+                android:id="@+id/AppointmentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not Scheduled"
+                android:textColor="#FF0000" />
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/ScheduleNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="Schedule Now"
+            android:textAllCaps="false" />
+
+        <LinearLayout
+            android:id="@+id/dateLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="2dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2">
+
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/chats"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:elevation="5dp"
-                    app:cardCornerRadius="25dp"
                     android:layout_gravity="center"
-                    app:cardBackgroundColor="#7166EE">
+                    android:elevation="5dp"
+                    app:cardBackgroundColor="#7166EE"
+                    app:cardCornerRadius="25dp">
+
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_baseline_chat_24"
                         android:layout_marginLeft="30dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="15dp"
-                        android:layout_marginTop="15dp"/>
+                        android:src="@drawable/ic_baseline_chat_24" />
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
 
@@ -99,21 +178,23 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2">
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:elevation="5dp"
-                    app:cardCornerRadius="25dp"
                     android:layout_gravity="center"
-                    app:cardBackgroundColor="#A866EE">
+                    android:elevation="5dp"
+                    app:cardBackgroundColor="#A866EE"
+                    app:cardCornerRadius="25dp">
+
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_baseline_chat_24"
                         android:layout_marginLeft="30dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="15dp"
-                        android:layout_marginTop="15dp"/>
+                        android:src="@drawable/ic_baseline_chat_24" />
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
 
@@ -121,28 +202,31 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2">
+
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/videoCall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:elevation="5dp"
-                    app:cardCornerRadius="25dp"
                     android:layout_gravity="center"
-                    app:cardBackgroundColor="#66D7EE">
+                    android:elevation="5dp"
+                    app:cardBackgroundColor="#66D7EE"
+                    app:cardCornerRadius="25dp">
+
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_baseline_chat_24"
                         android:layout_marginLeft="30dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="15dp"
-                        android:layout_marginTop="15dp"/>
+                        android:src="@drawable/ic_baseline_chat_24" />
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="2dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
         </LinearLayout>
 
         <TextView
@@ -151,15 +235,15 @@
             android:layout_marginTop="30dp"
             android:text="Analysis Report by MentalHealthTracker"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Analysis taken yet."/>
+            android:text="No Analysis taken yet." />
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </RelativeLayout>

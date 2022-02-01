@@ -285,28 +285,7 @@ public class DoctorDetails extends AppCompatActivity {
                                 Log.w("TAG", "Error writing document", e);
                             }
                         });
-                String  currentDateTimeString = DateFormat.getDateTimeInstance()
-                        .format(new Date());
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Calendar c = Calendar.getInstance();
-                c.add(Calendar.DATE, 0); // Adding 5 days
-                String output = sdf.format(c.getTime());
 
-                Map<String, Object> addToUser = new HashMap<>();
-                addToUser.put("UId", currentUser);
-                addToUser.put("Name(Doctor)", "Sample");
-                addToUser.put("Time", currentDateTimeString);
-                addToUser.put("Validity", output);
-                addToUser.put("PatientId", currentUser);
-
-                db.collection("DoctorUser").document(currentUser).collection("Appointment")
-                        .add(addToUser)
-                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentReference> task) {
-                                Log.d("TAG", "DocumentSnapshot successfully written!");
-                            }
-                        });
             }
         });
 
