@@ -15,11 +15,11 @@ import java.util.ArrayList;
 public class AdapterRequestList extends RecyclerView.Adapter<AdapterRequestList.MyViewHolder> {
 
     Context context;
-    ArrayList<ModelDoctorPatientList> modelArrayList;
+    ArrayList<ModelRequestList> requestLists;
 
-    public AdapterRequestList(Context context, ArrayList<ModelDoctorPatientList> modelArrayList) {
+    public AdapterRequestList(Context context, ArrayList<ModelRequestList> requestLists) {
         this.context = context;
-        this.modelArrayList = modelArrayList;
+        this.requestLists = requestLists;
     }
 
     @NonNull
@@ -31,22 +31,23 @@ public class AdapterRequestList extends RecyclerView.Adapter<AdapterRequestList.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        ModelDoctorPatientList model = modelArrayList.get(position);
+        ModelRequestList model = requestLists.get(position);
 
-        String name = model.Name;
-        String time = model.Time;
+        String name = model.NameUser;
+        //String time = model.Time;
         String id = model.PatientId;
 
-        holder.ModelPatientListName.setText(name);
-        holder.ModelPatientListTime.setText(time);
+        holder.ModelRequestListName.setText(name);
+        //holder.ModelPatientListTime.setText(time);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent a = new Intent(context, PatientDetails.class);
                 a.putExtra("Name", name);
-                a.putExtra("Time",time);
+                //a.putExtra("Time",time);
                 a.putExtra("ID", id);
+                a.putExtra("By", "request");
                 a.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 context.startActivity(a);
             }
@@ -55,18 +56,18 @@ public class AdapterRequestList extends RecyclerView.Adapter<AdapterRequestList.
 
     @Override
     public int getItemCount() {
-        return modelArrayList.size();
+        return requestLists.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView ModelPatientListName, ModelPatientListEmail, ModelPatientListTime;
+        TextView ModelRequestListName, ModelPatientListEmail, ModelPatientListTime;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            ModelPatientListName = itemView.findViewById(R.id.ModelPatientListName);
-            ModelPatientListEmail = itemView.findViewById(R.id.ModelPatientListEmail);
-            ModelPatientListTime = itemView.findViewById(R.id.ModelPatientListTime);
+            ModelRequestListName = itemView.findViewById(R.id.requestName);
+            //ModelPatientListEmail = itemView.findViewById(R.id.ModelPatientListEmail);
+            //ModelPatientListTime = itemView.findViewById(R.id.ModelPatientListTime);
         }
     }
 }

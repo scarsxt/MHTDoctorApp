@@ -2,40 +2,23 @@ package com.example.mhtdoctorapp;
 
 public class ModelDoctorPatientList {
 
-    String NameUser, Email, Time, PatientId;
+    String NameUser, Time, PatientId;
 
     public ModelDoctorPatientList() {
     }
 
-    public ModelDoctorPatientList(String name, String email, String time, String patientId) {
-        NameUser = name;
-        Email = email;
+    public ModelDoctorPatientList(String nameUser, String time, String patientId) {
+        NameUser = nameUser;
         Time = time;
         PatientId = patientId;
     }
 
-    public String getPatientId() {
-        return PatientId;
-    }
-
-    public void setPatientId(String patientId) {
-        PatientId = patientId;
-    }
-
-    public String getName() {
+    public String getNameUser() {
         return NameUser;
     }
 
-    public void setName(String name) {
-        NameUser = name;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
+    public void setNameUser(String nameUser) {
+        NameUser = nameUser;
     }
 
     public String getTime() {
@@ -44,5 +27,13 @@ public class ModelDoctorPatientList {
 
     public void setTime(String time) {
         Time = time;
+    }
+
+    public String getPatientId() {
+        return PatientId;
+    }
+
+    public void setPatientId(String patientId) {
+        PatientId = patientId;
     }
 }

@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView DoctorPatientList, RequestList;
     ArrayList<ModelDoctorPatientList> modelArrayList;
     ArrayList<ModelRequestList> requestLists;
-    AdapterDoctorPatientList myAdapter, requestAdapter;
+    AdapterDoctorPatientList myAdapter;
+    AdapterRequestList requestAdapter;
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         modelArrayList.clear();
         myAdapter.notifyDataSetChanged();
-        firebaseFirestore.collection("DoctorUser").document(Uid).collection("AppointmentList").orderBy("Name(User)", Query.Direction.ASCENDING)    //.whereEqualTo("Status", "Approved").whereEqualTo("ShopVisibility", "Visible").orderBy("ShopName", Query.Direction.ASCENDING)
+        firebaseFirestore.collection("DoctorUser").document(currentUser).collection("AppointmentList").orderBy("NameUser", Query.Direction.ASCENDING)    //.whereEqualTo("Status", "Approved").whereEqualTo("ShopVisibility", "Visible").orderBy("ShopName", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -86,9 +87,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
-
-
         RequestList = findViewById(R.id.requestList);
         RequestList.setHasFixedSize(true);
         RequestList.setLayoutManager(new LinearLayoutManager(this));
@@ -96,12 +94,12 @@ public class MainActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         requestLists = new ArrayList<>();
 
-        myAdapter = new AdapterDoctorPatientList(this, modelArrayList);
-        RequestList.setAdapter(myAdapter);
+        requestAdapter = new AdapterRequestList(this, requestLists);
+        RequestList.setAdapter(requestAdapter);
 
         requestLists.clear();
-        myAdapter.notifyDataSetChanged();
-        firebaseFirestore.collection("DoctorUser").document(Uid).collection("RequestList").orderBy("Name(User)", Query.Direction.ASCENDING)    //.whereEqualTo("Status", "Approved").whereEqualTo("ShopVisibility", "Visible").orderBy("ShopName", Query.Direction.ASCENDING)
+        requestAdapter.notifyDataSetChanged();
+        firebaseFirestore.collection("DoctorUser").document(currentUser).collection("RequestList").orderBy("NameUser", Query.Direction.ASCENDING)    //.whereEqualTo("Status", "Approved").whereEqualTo("ShopVisibility", "Visible").orderBy("ShopName", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -113,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                             if (dc.getType() == DocumentChange.Type.ADDED) {
                                 requestLists.add(dc.getDocument().toObject(ModelRequestList.class));
                             }
-                            myAdapter.notifyDataSetChanged();
+                            requestAdapter.notifyDataSetChanged();
                         }
                     }
                 });

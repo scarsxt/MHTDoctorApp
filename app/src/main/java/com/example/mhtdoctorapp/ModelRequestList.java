@@ -1,39 +1,29 @@
 package com.example.mhtdoctorapp;
 
 public class ModelRequestList {
-
-    String Name, Id, Time;
+    String NameUser, PatientId;
 
     public ModelRequestList() {
     }
 
-    public ModelRequestList(String name, String id, String time) {
-        Name = name;
-        Id = id;
-        Time = time;
+    public ModelRequestList(String nameUser, String patientId) {
+        NameUser = nameUser;
+        PatientId = patientId;
     }
 
-    public String getName() {
-        return Name;
+    public String getNameUser() {
+        return NameUser;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setNameUser(String nameUser) {
+        NameUser = nameUser;
     }
 
-    public String getId() {
-        return Id;
+    public String getPatientId() {
+        return PatientId;
     }
 
-    public void setId(String id) {
-        Id = id;
-    }
-
-    public String getTime() {
-        return Time;
-    }
-
-    public void setTime(String time) {
-        Time = time;
+    public void setPatientId(String patientId) {
+        PatientId = patientId;
     }
 }

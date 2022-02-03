@@ -33,13 +33,11 @@ public class AdapterDoctorPatientList extends RecyclerView.Adapter<AdapterDoctor
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ModelDoctorPatientList model = modelArrayList.get(position);
 
-        String name = model.Name;
-        String email = model.Email;
+        String name = model.NameUser;
         String time = model.Time;
         String id = model.PatientId;
 
         holder.ModelPatientListName.setText(name);
-        holder.ModelPatientListEmail.setText(email);
         holder.ModelPatientListTime.setText(time);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -47,8 +45,8 @@ public class AdapterDoctorPatientList extends RecyclerView.Adapter<AdapterDoctor
             public void onClick(View view) {
                 Intent a = new Intent(context, PatientDetails.class);
                 a.putExtra("Name", name);
-                a.putExtra("Email", email);
                 a.putExtra("ID", id);
+                a.putExtra("By", "appointment");
                 a.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 context.startActivity(a);
             }
@@ -62,12 +60,11 @@ public class AdapterDoctorPatientList extends RecyclerView.Adapter<AdapterDoctor
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView ModelPatientListName, ModelPatientListEmail, ModelPatientListTime;
+        TextView ModelPatientListName, ModelPatientListTime;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             ModelPatientListName = itemView.findViewById(R.id.ModelPatientListName);
-            ModelPatientListEmail = itemView.findViewById(R.id.ModelPatientListEmail);
             ModelPatientListTime = itemView.findViewById(R.id.ModelPatientListTime);
         }
     }

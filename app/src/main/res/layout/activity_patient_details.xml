@@ -30,9 +30,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="Your Profile"
+                android:layout_centerInParent="true"
+                android:text="Patient's Profile"
                 android:textSize="18sp" />
         </RelativeLayout>
 
@@ -70,76 +69,32 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Payment: " />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="COMPLITED"
-                android:textColor="@color/teal_700" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Appointment Date: " />
-
-            <TextView
-                android:id="@+id/AppointmentDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Not Scheduled"
-                android:textColor="#FF0000" />
-
-            <Button
-                android:id="@+id/confirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Confirm"/>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/ScheduleNow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:text="Schedule Now"
-            android:textAllCaps="false" />
-
-        <LinearLayout
             android:id="@+id/dateLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
-
+            android:orientation="vertical"
+            android:visibility="gone">
             <Spinner
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp" />
 
+            <TextView
+                android:id="@+id/timeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
+            <Button
+                android:id="@+id/timeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Time"/>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -229,6 +184,43 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Appointment Date: " />
+
+            <TextView
+                android:id="@+id/AppointmentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not Scheduled"
+                android:textColor="#FF0000" />
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/ScheduleNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="Schedule Now"
+            android:textAllCaps="false" />
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -246,4 +238,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
 </RelativeLayout>
