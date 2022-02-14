@@ -29,6 +29,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.jitsi.meet.sdk.JitsiMeetActivity;
+import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,9 +46,9 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
     Button scheduleNow, ok, timeButton, confirm;
     TextView appointmentDate, uName, timeTextView;
     CardView chat;
-    String appDt, pName, doc_Name, id;
+    String appDt, pName, doc_Name, id, appTime;
     Spinner spinner;
-    LinearLayout date, contact;
+    LinearLayout date, contact, dateSetter, timeSetter;
     List<String> categories;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -62,10 +65,12 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
 
         scheduleNow = findViewById(R.id.ScheduleNow);
         appointmentDate = findViewById(R.id.AppointmentDate);
-        chat = findViewById(R.id.chats);
+        chat = findViewById(R.id.chatBtn);
         contact = findViewById(R.id.contact);
-        spinner = (Spinner) findViewById(R.id.date);
+        spinner = findViewById(R.id.date);
         date = findViewById(R.id.dateLayout);
+        dateSetter = findViewById(R.id.DateSetter);
+        timeSetter = findViewById(R.id.TimeSetter);
         confirm = findViewById(R.id.confirm);
         uName = findViewById(R.id.name);
         timeTextView = findViewById(R.id.timeTextView);
@@ -98,7 +103,7 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
 
         dateSet();
 
-        db.collection("DoctorUser").document(currentUser).collection("AppointmentList").document(id)
+        db.collection("DoctorUser").document(currentUser).collection("RequestList").document(id)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -109,10 +114,19 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
                             Log.d("TAG", appDt);
                             appointmentDate.setText(appDt);
                             if (appDt.equals("NotScheduled")) {
+                                Log.d("TAG", "Appointment Not Scheduled");
                                 scheduleNow.setText("Schedule now");
+                                contact.setVisibility(View.GONE);
                             } else {
+                                Log.d("TAG", "Appointment Scheduled");
                                 scheduleNow.setVisibility(View.GONE);
+                                contact.setVisibility(View.VISIBLE);
                             }
+                        }
+                        else{
+                            Log.d("TAG", id);
+                            scheduleNow.setVisibility(View.VISIBLE);
+                            contact.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -120,10 +134,11 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
         scheduleNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scheduleNow.setVisibility(View.GONE);
-                date.setVisibility(View.VISIBLE);
+                dateSetter.setVisibility(View.VISIBLE);
+                timeSetter.setVisibility(View.VISIBLE);
                 //dateSet.setVisibility(View.VISIBLE);
                 confirm.setVisibility(View.VISIBLE);
+                scheduleNow.setVisibility(View.GONE);
             }
         });
 
@@ -135,9 +150,9 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
         // Spinner Drop down elements
         categories = new ArrayList<String>();
 
-        categories.add("--Select--");
+        categories.add("--Select Date--");
 
-        for (int d = 0; d < 7; d++) {
+        for (int d = 1; d < 8; d++) {
             Calendar c = Calendar.getInstance();
             c.add(Calendar.DATE, d); // Adding days
             String output = sdf.format(c.getTime());
@@ -178,6 +193,7 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
                 Log.d("TAG", "On Click Listener Running");
 
                 appDt = appointmentDate.getText().toString();
+                appTime = timeTextView.getText().toString();
 
                 Map<String, Object> requestData =new HashMap<>();
                 requestData.put("Name(User)", pName);
@@ -185,22 +201,26 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
                 requestData.put("Email", currentUser);
                 requestData.put("PatientId", id);
                 requestData.put("AppointmentDate", appDt);
+                requestData.put("AppointmentTime", appTime);
                 requestData.put("Payment", "false");
                 requestData.put("Approval", "Approved");
                 requestData.put("Time", dateText);
 
-                db.collection("User").document(id).collection("Appointment").document(currentUser)
+                db.collection("User").document(id).collection("RequestList").document(currentUser)
                         .set(requestData)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(@NonNull Void unused) {
                                 Log.d("TAG", "DocumentSnapshot successfully written!");
+                                scheduleNow.setVisibility(View.GONE);
+                                confirm.setVisibility(View.GONE);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Log.d("TAG", "Request Data written");
+                                scheduleNow.setVisibility(View.VISIBLE);
                             }
                         });
 
@@ -210,18 +230,19 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
                             @Override
                             public void onSuccess(@NonNull Void unused) {
                                 Log.d("TAG", "Request Data written");
+                                scheduleNow.setVisibility(View.GONE);
+                                confirm.setVisibility(View.GONE);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-
                                 Log.w("TAG", "Error writing document", e);
+                                scheduleNow.setVisibility(View.VISIBLE);
                             }
                         });
             }
         });
-
     }
 
     public void dateSet() {
@@ -231,7 +252,7 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
         } else if (appDt.equals("--Select--")) {
             scheduleNow.setText("Schedule Now");
         } else {
-            scheduleNow.setText("Re-Schedule");
+            scheduleNow.setVisibility(View.GONE);
             appointmentDate.setTextColor(getResources().getColor(R.color.teal_700));
         }
     }
@@ -270,5 +291,13 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
             }
         }, HOUR, MINUTE, is24HourFormat);
         timePickerDialog.show();
+    }
+
+    public void videoLaunch(View v) {
+        JitsiMeetConferenceOptions options
+                = new JitsiMeetConferenceOptions.Builder()
+                .setRoom(id + " " + currentUser)
+                .build();
+        JitsiMeetActivity.launch(this, options);
     }
 }

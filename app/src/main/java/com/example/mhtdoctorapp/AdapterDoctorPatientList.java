@@ -5,7 +5,14 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +23,7 @@ public class AdapterDoctorPatientList extends RecyclerView.Adapter<AdapterDoctor
 
     Context context;
     ArrayList<ModelDoctorPatientList> modelArrayList;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public AdapterDoctorPatientList(Context context, ArrayList<ModelDoctorPatientList> modelArrayList) {
         this.context = context;
@@ -34,11 +42,36 @@ public class AdapterDoctorPatientList extends RecyclerView.Adapter<AdapterDoctor
         ModelDoctorPatientList model = modelArrayList.get(position);
 
         String name = model.NameUser;
-        String time = model.Time;
+        String time = model.AppointmentDate;
         String id = model.PatientId;
 
         holder.ModelPatientListName.setText(name);
         holder.ModelPatientListTime.setText(time);
+
+        db.collection("User").document(id)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+
+                            if (document.exists()) {
+                                String n = document.getString("Name");
+                                String profileUrl = document.getString("ProfileImageUrl");
+                                if (profileUrl != null) {
+                                    Glide.with(context)
+                                            .load(profileUrl)
+                                            .into(holder.ModelPatientProfile);
+                                }
+                            } else {
+
+                            }
+                        }
+
+                    }
+                });
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,11 +94,13 @@ public class AdapterDoctorPatientList extends RecyclerView.Adapter<AdapterDoctor
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView ModelPatientListName, ModelPatientListTime;
+        ImageView ModelPatientProfile;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             ModelPatientListName = itemView.findViewById(R.id.ModelPatientListName);
             ModelPatientListTime = itemView.findViewById(R.id.ModelPatientListTime);
+            ModelPatientProfile = itemView.findViewById(R.id.profileImage);
         }
     }
 }

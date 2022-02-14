@@ -6,18 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".PatientDetails">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp">
-
             <ImageView
                 android:id="@+id/DoctorProfileBackBtn"
                 android:layout_width="25dp"
@@ -39,12 +36,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp">
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
@@ -73,115 +68,133 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
-            <Spinner
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp" />
-
-            <TextView
-                android:id="@+id/timeTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
+            android:orientation="horizontal">
             <Button
-                android:id="@+id/timeButton"
+                android:id="@+id/ScheduleNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set Time"/>
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="Schedule Now"
+                android:textAllCaps="false" />
+
+            <LinearLayout
+                android:id="@+id/DateSetter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/AppointmentDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Not Scheduled"
+                    android:textColor="#FF0000" />
+
+                <Spinner
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/TimeSetter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/timeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Schedule Time"
+                    android:textColor="#FF0000"/>
+
+                <Button
+                    android:id="@+id/timeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set Time"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_weight="1" />
-
-            <RelativeLayout
-                android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/chats"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp">
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:elevation="5dp"
-                    app:cardBackgroundColor="#7166EE"
-                    app:cardCornerRadius="25dp">
-
-                    <ImageView
+                    android:background="#308000FF">
+                    <ImageButton
+                        android:id="@+id/videoCallBtn"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginRight="30dp"
-                        android:layout_marginBottom="15dp"
-                        android:src="@drawable/ic_baseline_chat_24" />
-                </androidx.cardview.widget.CardView>
-            </RelativeLayout>
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/video_logo"
+                        android:onClick="videoLaunch"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <RelativeLayout
-                android:layout_width="0dp"
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2">
-
-                <androidx.cardview.widget.CardView
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp">
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:elevation="5dp"
-                    app:cardBackgroundColor="#A866EE"
-                    app:cardCornerRadius="25dp">
-
-                    <ImageView
+                    android:background="#352B6E17">
+                    <ImageButton
+                        android:id="@+id/call"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginRight="30dp"
-                        android:layout_marginBottom="15dp"
-                        android:src="@drawable/ic_baseline_chat_24" />
-                </androidx.cardview.widget.CardView>
-            </RelativeLayout>
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/phone_logo"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <RelativeLayout
-                android:layout_width="0dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/chatBtn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/videoCall"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp">
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:elevation="5dp"
-                    app:cardBackgroundColor="#66D7EE"
-                    app:cardCornerRadius="25dp">
-
-                    <ImageView
+                    android:background="#300072ff">
+                    <ImageButton
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginRight="30dp"
-                        android:layout_marginBottom="15dp"
-                        android:src="@drawable/ic_baseline_chat_24" />
-                </androidx.cardview.widget.CardView>
-            </RelativeLayout>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_weight="1" />
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/chat_logo"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
         <LinearLayout
@@ -189,37 +202,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Appointment Date: " />
-
-            <TextView
-                android:id="@+id/AppointmentDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Not Scheduled"
-                android:textColor="#FF0000" />
-
             <Button
                 android:id="@+id/confirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Confirm"
                 android:visibility="gone"/>
-
         </LinearLayout>
-
-        <Button
-            android:id="@+id/ScheduleNow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:text="Schedule Now"
-            android:textAllCaps="false" />
-
 
         <TextView
             android:layout_width="match_parent"
@@ -229,14 +218,13 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No Analysis taken yet." />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No Analysis taken yet." />
+        </ScrollView>
     </LinearLayout>
-
 </RelativeLayout>

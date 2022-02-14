@@ -6,12 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SplashScreen extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +31,27 @@ public class SplashScreen extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
                     FirebaseUser currentUser = mAuth.getInstance().getCurrentUser();
-                    if(currentUser != null)
-                    {
-                        Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intent);
-                        finish();
+                    if(currentUser != null) {
+                        String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        db.collection("DoctorUser").document(currentuser)
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        DocumentSnapshot documentSnapshot = task.getResult();
+                                        if (documentSnapshot.exists()){
+                                            startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                                        }
+                                        else{
+                                            Intent i = new Intent(SplashScreen.this, DoctorDetails.class);
+                                            i.putExtra("EditMode", "true");
+                                            startActivity(i);
+                                        }
+                                        finish();
+                                    }
+                                });
                     }
-                    else
-                    {
+                    else {
                         Intent intent = new Intent(SplashScreen.this, SignIn.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent);

@@ -1,15 +1,14 @@
 package com.example.mhtdoctorapp;
 
 public class ModelDoctorPatientList {
-
-    String NameUser, Time, PatientId;
+    String NameUser, AppointmentDate, PatientId;
 
     public ModelDoctorPatientList() {
     }
 
-    public ModelDoctorPatientList(String nameUser, String time, String patientId) {
+    public ModelDoctorPatientList(String nameUser, String appointmentDate, String patientId) {
         NameUser = nameUser;
-        Time = time;
+        AppointmentDate = appointmentDate;
         PatientId = patientId;
     }
 
@@ -21,12 +20,12 @@ public class ModelDoctorPatientList {
         NameUser = nameUser;
     }
 
-    public String getTime() {
-        return Time;
+    public String getAppointmentDate() {
+        return AppointmentDate;
     }
 
-    public void setTime(String time) {
-        Time = time;
+    public void setAppointmentDate(String appointmentDate) {
+        AppointmentDate = appointmentDate;
     }
 
     public String getPatientId() {

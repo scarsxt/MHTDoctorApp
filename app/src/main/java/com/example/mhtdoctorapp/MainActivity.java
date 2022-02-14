@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
         requestLists.clear();
         requestAdapter.notifyDataSetChanged();
-        firebaseFirestore.collection("DoctorUser").document(currentUser).collection("RequestList").orderBy("NameUser", Query.Direction.ASCENDING)    //.whereEqualTo("Status", "Approved").whereEqualTo("ShopVisibility", "Visible").orderBy("ShopName", Query.Direction.ASCENDING)
+        firebaseFirestore.collection("DoctorUser").document(currentUser).collection("RequestList").orderBy("NameUser", Query.Direction.ASCENDING).whereEqualTo("AppointmentDate", "NotScheduled")//.whereEqualTo("Status", "Approved").whereEqualTo("ShopVisibility", "Visible").orderBy("ShopName", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -115,26 +115,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
