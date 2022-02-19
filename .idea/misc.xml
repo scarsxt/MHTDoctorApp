@@ -16,14 +16,23 @@
         <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/patientlistlayout.xml" value="0.264" />
         <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/receiverlayout.xml" value="0.25" />
         <entry key="..\:/Users/Prathamesh/AndroidStudioProjects/MHTDoctorApp/app/src/main/res/layout/senderlayout.xml" value="0.25" />
+        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/drawable/gradient.xml" value="0.1715" />
         <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.203" />
         <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/drawable/ic_baseline_videocam_24.xml" value="0.203" />
+        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/activity_appointment_history.xml" value="0.14736842105263157" />
         <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/activity_doctor_details.xml" value="0.12295081967213115" />
-        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/activity_main.xml" value="0.136" />
-        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/activity_patient_details.xml" value="0.136" />
+        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/activity_doctor_patientchat.xml" value="0.1014344262295082" />
+        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/activity_main.xml" value="0.16799999999999998" />
+        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/activity_patient_details.xml" value="0.176" />
+        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/activity_payment_history.xml" value="0.1569078947368421" />
+        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/activity_settings.xml" value="0.1569078947368421" />
         <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/activity_sign_in.xml" value="0.12807377049180327" />
         <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.1569078947368421" />
+        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/appointment_list_layout.xml" value="0.1569078947368421" />
+        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/chat_list_layout.xml" value="0.1569078947368421" />
         <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/patientlistlayout.xml" value="0.12807377049180327" />
+        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/payment_history.xml" value="0.1569078947368421" />
+        <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/receiverlayout.xml" value="0.1014344262295082" />
         <entry key="..\:/Users/siddh.LAPTOP-LC2NR12O/Desktop/AndroidProjects/MHTDoctorApp/app/src/main/res/layout/request_list_layout.xml" value="0.1569078947368421" />
       </map>
     </option>

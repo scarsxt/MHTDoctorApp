@@ -90,7 +90,12 @@
                     <TextView
                         android:id="@+id/name"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="NAME"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/editName"
@@ -102,6 +107,15 @@
                         android:inputType="textPersonName"
                         android:padding="15dp" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="DATE OF BIRTH"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/DoB"
@@ -222,13 +236,163 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Enter Total Patients" />
-
-                    <EditText
-                        android:id="@+id/certificate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="Add Certificate" />
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/biodata"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="5dp"
+                            android:layout_margin="15dp"
+                            app:cardCornerRadius="20dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_margin="15dp">
+                                <ImageView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/patienticon"/>
+
+                                <TextView
+                                    android:id="@+id/totalPatient"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold"
+                                    android:gravity="center"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Successful Patients"
+                                    android:textSize="12sp"
+                                    android:gravity="center"/>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="5dp"
+                            android:layout_margin="15dp"
+                            app:cardCornerRadius="20dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_margin="15dp">
+                                <ImageView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/exp"/>
+
+                                <TextView
+                                    android:id="@+id/expp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    android:gravity="center"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Experience"
+                                    android:textSize="12sp"
+                                    android:gravity="center"/>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="5dp"
+                            android:layout_margin="15dp"
+                            app:cardCornerRadius="20dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_margin="15dp">
+                                <ImageView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/location"/>
+
+                                <TextView
+                                    android:id="@+id/loc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold"
+                                    android:gravity="center"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Location"
+                                    android:textSize="12sp"
+                                    android:gravity="center"/>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="5dp"
+                            android:layout_margin="15dp"
+                            app:cardCornerRadius="20dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_margin="15dp">
+                                <ImageView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/certificate"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="View Certificate"
+                                    android:textColor="#698BB2"
+                                    android:gravity="center"/>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

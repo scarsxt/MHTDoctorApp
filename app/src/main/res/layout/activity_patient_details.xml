@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp">
+
             <ImageView
                 android:id="@+id/DoctorProfileBackBtn"
                 android:layout_width="25dp"
@@ -36,31 +37,67 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp">
-            <LinearLayout
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/prof"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_centerHorizontal="true"
+                android:elevation="5dp"
+                app:cardCornerRadius="20dp">
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/prof"
+                android:orientation="vertical"
+                android:layout_centerHorizontal="true">
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="NAME"
+                    android:layout_gravity="center_vertical"
                     android:textSize="24dp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/phoneNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="EMAIL-ID"
-                    android:textSize="14sp" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentEnd="true"
-                android:scaleType="centerCrop" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_name">
+
+                <TextView
+                    android:id="@+id/dob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="DOB"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/gen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:text="GENDER"
+                    android:textSize="18sp" />
+            </RelativeLayout>
         </RelativeLayout>
 
         <LinearLayout
@@ -215,16 +252,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Analysis Report by MentalHealthTracker"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="No Analysis taken yet." />
         </ScrollView>
     </LinearLayout>
 </RelativeLayout>

@@ -19,6 +19,7 @@ import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -47,6 +48,7 @@ public class DoctorDetails extends AppCompatActivity {
 
     EditText DoctorDetailsName, DoctorDetailsEmail;
     Button DoctorDetailsSubmitBtn;
+    LinearLayout biodata;
 
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth mAuth;
@@ -113,37 +115,24 @@ public class DoctorDetails extends AppCompatActivity {
         //ImageView
         profileImg = findViewById(R.id.profileImg);
 
+        biodata = findViewById(R.id.biodata);
+
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(DoctorDetails.this, DoctorDetails.class);
-                i.putExtra("editMode" , "true");
+                i.putExtra("EditMode" , "true");
                 startActivity(i);
             }
         });
 
-
-
-
         //Applying settings based on edit mode
         if (editMode.equals("true")) {
-
-
-
             name.setVisibility(View.GONE);
-
-
             edit.setVisibility(View.GONE);
-
-
             dob.setVisibility(View.GONE);
-
             gender.setVisibility(View.GONE);
-
-
-
-
-
+            biodata.setVisibility(View.GONE);
 
             eName.setVisibility(View.VISIBLE);
             eDob.setVisibility(View.VISIBLE);
@@ -155,10 +144,6 @@ public class DoctorDetails extends AppCompatActivity {
             eLocation.setVisibility(View.VISIBLE);
             ePatients.setVisibility(View.VISIBLE);
             eExp.setVisibility(View.VISIBLE);
-
-
-
-
         }
 
 
@@ -169,6 +154,7 @@ public class DoctorDetails extends AppCompatActivity {
             edit.setVisibility(View.VISIBLE);
             dob.setVisibility(View.VISIBLE);
             gender.setVisibility(View.VISIBLE);
+            biodata.setVisibility(View.VISIBLE);
 
 
 
@@ -183,6 +169,7 @@ public class DoctorDetails extends AppCompatActivity {
             eLocation.setVisibility(View.GONE);
             ePatients.setVisibility(View.GONE);
             eExp.setVisibility(View.GONE);
+            upload.setVisibility(View.GONE);
 
 
 
@@ -211,7 +198,6 @@ public class DoctorDetails extends AppCompatActivity {
                     });
 
         }
-
 
         //Date of Birth
         eDob.setOnClickListener(new View.OnClickListener() {

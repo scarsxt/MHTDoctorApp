@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MHTDoctorApp">
-        <activity android:name=".PatientDetails"></activity>
+        <activity
+            android:name=".AppointmentHistory"
+            android:exported="false" />
+        <activity
+            android:name=".Settings"
+            android:exported="false" />
+        <activity android:name=".PatientDetails" />
         <activity
             android:name=".SplashScreen"
             android:exported="true">
@@ -30,6 +36,11 @@
             android:exported="false" />
         <activity android:name=".SignIn" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".PaymentHistory" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

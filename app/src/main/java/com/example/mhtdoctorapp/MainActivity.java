@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     TextView userName;
-    ImageView logout;
+    ImageView logout, settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,15 +118,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
-
-
         //logout
-        logout = findViewById(R.id.settings);
-        logout.setOnClickListener(new View.OnClickListener() {
+        settings = findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, Settings.class));
             }
         });
 
@@ -148,25 +147,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        /*
-        db.collection("").document(currentUser)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        DocumentSnapshot documentSnapshot = task.getResult();
-                        if (task.isSuccessful())
-                        {
-                            name = documentSnapshot.getString("Name");
-                        }
-                    }
-                });
-
-        //userName
-        userName = findViewById(R.id.userName);
-        userName.setText(name);
-
-         */
 
     }
 }

@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,6 +22,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,15 +47,16 @@ import java.util.Map;
 
 public class PatientDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button scheduleNow, ok, timeButton, confirm;
-    TextView appointmentDate, uName, timeTextView;
+    TextView appointmentDate, uName, timeTextView, dob, gen;
     CardView chat;
-    String appDt, pName, doc_Name, id, appTime;
+    String appDt, pName, doc_Name, id, appTime, d, g;
     Spinner spinner;
     LinearLayout date, contact, dateSetter, timeSetter;
     List<String> categories;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
     Calendar calendar1;
+    ImageView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,9 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
         uName = findViewById(R.id.name);
         timeTextView = findViewById(R.id.timeTextView);
         timeButton = findViewById(R.id.timeButton);
+        dob = findViewById(R.id.dob);
+        gen = findViewById(R.id.gen);
+        profile = findViewById(R.id.profile_image);
 
         db.collection("User").document(id)
                 .get()
@@ -85,6 +92,19 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
                         if (task.isSuccessful()) {
                             pName = documentSnapshot.getString("Name");
                             uName.setText(pName);
+                            d = documentSnapshot.getString("DateOfBirth");
+                            dob.setText(d);
+                            g = documentSnapshot.getString("Gender");
+                            gen.setText(g);
+
+                            String profileUrl = documentSnapshot.getString("ProfileImageUrl");
+                            if (profileUrl != null) {
+                                Glide.with(PatientDetails.this)
+                                        .load(profileUrl)
+                                        .into(profile);
+                            }
+
+
                         }
                     }
                 });
@@ -145,7 +165,7 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
         // Spinner click listener
         spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd");
 
         // Spinner Drop down elements
         categories = new ArrayList<String>();

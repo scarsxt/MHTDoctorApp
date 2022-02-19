@@ -62,4 +62,5 @@ dependencies {
     //Jitsi meet
     implementation ('org.jitsi.react:jitsi-meet-sdk:3.+') { transitive = true }
 
+
 }
