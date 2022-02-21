@@ -252,6 +252,8 @@ public class PatientDetails extends AppCompatActivity implements AdapterView.OnI
                                 Log.d("TAG", "Request Data written");
                                 scheduleNow.setVisibility(View.GONE);
                                 confirm.setVisibility(View.GONE);
+                                dateSetter.setVisibility(View.GONE);
+                                timeSetter.setVisibility(View.GONE);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

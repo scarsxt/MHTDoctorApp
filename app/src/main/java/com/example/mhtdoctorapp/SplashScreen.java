@@ -40,7 +40,11 @@ public class SplashScreen extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                         DocumentSnapshot documentSnapshot = task.getResult();
                                         if (documentSnapshot.exists()){
-                                            startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                                            Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                                            i.putExtra("selectedApp", "Today");
+                                            i.putExtra("selectedChat", "Unread");
+                                            i.putExtra("By", "session");
+                                            startActivity(i);
                                         }
                                         else{
                                             Intent i = new Intent(SplashScreen.this, DoctorDetails.class);

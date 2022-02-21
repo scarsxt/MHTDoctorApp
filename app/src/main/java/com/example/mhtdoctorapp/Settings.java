@@ -7,12 +7,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Settings extends AppCompatActivity {
-    TextView ah, ca, profile, logout, ph;
+    TextView ah, ca, logout, ph;
+    CardView profile;
     String n;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -26,7 +28,7 @@ public class Settings extends AppCompatActivity {
         ph = findViewById(R.id.ph);
         //ah = findViewById(R.id.appointmentHistory);
         profile = findViewById(R.id.profile);
-        //ca = findViewById(R.id.ca);
+        ca = findViewById(R.id.mailUs);
 
         ph.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,12 +37,15 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        /*
         ah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Settings.this, AppointmentHistory.class));
             }
         });
+
+         */
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override

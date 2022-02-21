@@ -113,7 +113,10 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:text="Schedule Now"
-                android:textAllCaps="false" />
+                android:textColor="@color/white"
+                android:fontFamily="@font/ubuntu_light"
+                android:padding="5dp"
+                android:background="@drawable/button_style"/>
 
             <LinearLayout
                 android:id="@+id/DateSetter"
@@ -149,14 +152,18 @@
                     android:id="@+id/timeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Schedule Time"
-                    android:textColor="#FF0000"/>
+                    android:text="--Schedule Time--"
+                    android:textColor="@color/teal_700"/>
 
                 <Button
                     android:id="@+id/timeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Set Time"/>
+                    android:text="Set Time"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:padding="5dp"
+                    android:background="@drawable/button_style"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -244,7 +251,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Confirm"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:fontFamily="@font/ubuntu_light"
+                android:padding="5dp"
+                android:background="@drawable/button_style"/>
         </LinearLayout>
 
         <TextView

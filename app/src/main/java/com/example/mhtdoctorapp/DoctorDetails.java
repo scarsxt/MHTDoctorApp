@@ -25,6 +25,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -189,9 +190,18 @@ public class DoctorDetails extends AppCompatActivity {
                                     String n = document.getString("Name");
                                     String db = document.getString("DateOfBirth");
                                     String g = document.getString("Gender");
+                                    String ProfileUrl = document.getString("Profileimage");
+                                    String e = document.getString("Experience");
+                                    String B = document.getString("Bio");
+                                    String TP = document.getString("TotalPatients");
+
                                     name.setText(n);
                                     dob.setText(db);
                                     gender.setText(g);
+                                    Glide.with(DoctorDetails.this)
+                                            .load(ProfileUrl)
+                                            .into(profileImg);
+
                                 }
                             }
                         }

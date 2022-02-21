@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -71,7 +72,7 @@ public class AdapterRequestList extends RecyclerView.Adapter<AdapterRequestList.
                     }
                 });
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.viewMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent a = new Intent(context, PatientDetails.class);
@@ -92,14 +93,15 @@ public class AdapterRequestList extends RecyclerView.Adapter<AdapterRequestList.
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView ModelRequestListName, ModelPatientListEmail, ModelPatientListTime;
+        TextView ModelRequestListName;
         ImageView ModelRequestProfileImg;
+        Button viewMore;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             ModelRequestListName = itemView.findViewById(R.id.requestName);
             ModelRequestProfileImg = itemView.findViewById(R.id.requestProfileImg);
-
+            viewMore = itemView.findViewById(R.id.viewMore);
         }
     }
 }
